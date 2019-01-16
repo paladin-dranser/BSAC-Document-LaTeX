@@ -1,0 +1,74 @@
+%%% Пункт 3.1 — фармат А4 (210x297 мм);
+%%%           — памер шрыфта 12 пунктаў;
+\documentclass[a4paper,12pt]{extarticle} % extarticle — падтрымка шрыфтаў з памерам 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
+
+%%% Пункт 3.1 — памер палёў (малюнак 3.1, СТП 01-2017)
+\usepackage{geometry}
+    \geometry{left=30mm}
+    \geometry{right=10mm}
+    \geometry{top=20mm}
+    \geometry{bottom=20mm}
+
+%%% Пункт 3.1 — шрыфт Times New Roman
+\usepackage{fontspec}
+    \setmainfont{Times New Roman}
+
+%%% Падключэнне беларускай мовы
+\usepackage[english, belarusian]{babel}
+
+%%% Дазвол на кірыліцу ў формулах
+\usepackage{mathtext}
+
+%%% Для ўключэння pdf дакументаў у канчатковы файл
+\usepackage{pdfpages}
+
+%%% Пераносы ў словах са злучком
+%%% Злучок у словах замяняецца на \hyph: апаратна\hyphпраграмны
+%%% https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash
+\def\hyph{-\penalty0\hskip0pt\relax}
+
+%%% мадыфікатары напісання
+\usepackage{soul}
+
+%%% спасылкі ў pdf
+\usepackage{hyperref}
+
+%%% Пункт 3.1 — інтэрвал паміж радкамі
+%%%             мае складаць 1,5 машынапіснага інтэрвалу
+\usepackage{setspace}
+    \onehalfspacing
+
+%%% «Разумная» коска
+\usepackage{icomma}
+
+%%% перанос знакаў у формулах (па Львоўскаму)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Пункт 3.3 — подпіс табліцы;
+%%% Пункт 3.5 — подпіс ілюстрацый
+\usepackage{caption}
+\captionsetup[table]{name=Табліца,labelsep=endash, justification=raggedright, singlelinecheck=false}
+\captionsetup[figure]{name=Малюнак,labelsep=endash, justification=centering}
+
+%%% Пункт 3.2 — нумарацыя старонак у ніжнім правым кутку
+%%%           — (малюнак 3.1, СТП 01-2017)
+\usepackage{fancyhdr} % пакет для устаноўкі калонтытулаў
+    \pagestyle{fancy} % зменя стылю афармлення старонак
+    \renewcommand{\headrulewidth}{0pt} % прыбраць падзяляльную лінію ўверсе старонкі
+    \renewcommand{\footrulewidth}{0pt} % прыбраць падзяляльную лінію ўнізе старонкі
+    \fancypagestyle{plain}{
+        \fancyhf{} % ачыстка бягучага стылю
+        \rfoot{\thepage} % нумарацыя ў ніжнім прывым кутку
+    }
+
+%%% Водступ першага абзаца ў section (адпаведна з астатнімі азбацамі)
+\usepackage{indentfirst}
+
+%%% Пункт 3.1 — велічыня водступу абзаца 1,25 см
+\setlength{\parindent}{1.25cm}
+
+%%% Пункт 3.1 — водступ абзаца 1,25 см для section
+\makeatletter
+\renewcommand\@seccntformat[1]{\hspace*{\parindent}\csname the#1\endcsname\quad}
+\makeatother
