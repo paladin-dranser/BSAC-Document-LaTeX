@@ -2,13 +2,13 @@
 %%%           — памер шрыфта 12 пунктаў;
 \documentclass[a4paper,12pt]{extarticle} % extarticle — падтрымка шрыфтаў з памерам 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt
 
-%%% Пункт 3.1 — памер палёў (малюнак 3.1, СТП 01-2017)
+%%% Пункт 3.1 — памер палёў старонкі (малюнак 3.1, СТП 01-2017)
 \usepackage{geometry}
     \geometry{left=30mm}
     \geometry{right=10mm}
     \geometry{top=20mm}
     \geometry{bottom=20mm}
-    \geometry{includefoot} % устаноўка ніжняга калантытула
+    \geometry{includefoot} % устаноўка ніжняга калонтытула
 
 %%% Пункт 3.1 — шрыфт Times New Roman
 \usepackage{fontspec}
@@ -46,7 +46,7 @@
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{}
 {\hbox{$\mathsurround=0pt #1$}}{}}
 
-%%% Пункт 3.3 — подпіс табліцы;
+%%% Пункт 3.3 — подпіс табліцы
 %%% Пункт 3.5 — подпіс ілюстрацый
 \usepackage{caption}
 \captionsetup[table]{name=Табліца,labelsep=endash, justification=raggedright, singlelinecheck=false}
@@ -55,7 +55,7 @@
 %%% Пункт 3.2 — нумарацыя старонак у ніжнім правым кутку
 %%%           — (малюнак 3.1, СТП 01-2017)
 \usepackage{fancyhdr} % пакет для устаноўкі калонтытулаў
-    \pagestyle{fancy} % зменя стылю афармлення старонак
+    \pagestyle{fancy} % змена стылю афармлення старонак
     \fancyhf{} % ачыстка бягучых значэнняў
     \fancyfoot[R]{\thepage} % устаноўка верхняга калонтытула
     \renewcommand{\headrulewidth}{0pt} % прыбраць падзяляльную лінію ўверсе старонкі
@@ -65,7 +65,7 @@
         \rfoot{\thepage} % нумарацыя ў ніжнім прывым кутку
     }
 
-%%% Водступ першага абзаца ў section (адпаведна з астатнімі азбацамі)
+%%% Водступ першага абзаца ў section (адпаведна з астатнімі абзацамі)
 \usepackage{indentfirst}
 
 %%% Пункт 3.1 — велічыня водступу абзаца 1,25 см
