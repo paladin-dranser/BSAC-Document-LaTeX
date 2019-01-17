@@ -75,10 +75,31 @@
 %%% Водступ першага абзаца ў section (адпаведна з астатнімі абзацамі)
 \usepackage{indentfirst}
 
+%%% адключэнне змянення прабелаў паміж словамі/сказамі
+\frenchspacing
+
 %%% Пункт 3.1 — велічыня водступу абзаца 1,25 см
 \setlength{\parindent}{1.25cm}
 
-%%% Пункт 3.1 — водступ абзаца 1,25 см для section
-%\makeatletter
-%\renewcommand\@seccntformat[1]{\hspace*{\parindent}\csname the#1\endcsname\quad}
-%\makeatother
+%%% магчымасць адключаць пераносы слоў
+\usepackage{hyphenat}
+
+%%% Рэдагаваць выгляд загалоўкаў
+\usepackage{titlesec}
+%%% Пункт 3.1 — загалоўкі раздзелаў пішуцца вялікімі літарамі
+%%%           — водступ абзаца
+%%%           — паўтоўсты шрыфт Times New Roman 14 памеру
+%%%           — перанос слоў не дапускаецца
+%%%           — кожны раздзел мае пачынацца з новай старонкі
+%%%           — адлегласць паміж загалоўкам і тэкстам у 1 прабельны радок
+%%%           — адлегласць паміж загалоўкам і падзагалоўкам у 1 прабельны радок
+    \titleformat{\section}
+        {\fontsize{14}{14} \bfseries \raggedright \newpage}
+        {\hspace{1.25cm}\thesection\ }{0pt}{\MakeUppercase} 
+    \titlespacing{\section}{0pt}{0pt}{1.5em}
+%%% Пункт 3.1 — паўтоўсты шрыфт Times New Roman з памерам асноўнага тэксту
+%%%           — адлегласць паміж падзагалоўкам і тэкстам у 1 прабельны радок
+    \titleformat{\subsection}
+        {\fontsize{12}{12} \bfseries \raggedright}
+        {\hspace{1.25cm}\thesubsection\ }{0pt}{}
+    \titlespacing{\subsection}{0pt}{1.5em}{1.5em}
