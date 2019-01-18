@@ -150,7 +150,7 @@
     \renewcommand{\cftbeforesecskip}{0em}
     % адлегласць паміж нумарам падраздзела і яго назвай
     \renewcommand{\cftsubsecnumwidth}{20pt}
-    % слова ЗМЕСТ пішацца вялікі літарамі, паўтоўстым шрыфтам, па цэнтру
+    % слова ЗМЕСТ пішацца вялікімі літарамі, паўтоўстым шрыфтам, па цэнтру
     \renewcommand{\cfttoctitlefont}{
         \hfill
         \fontsize{14}{14}
@@ -166,33 +166,46 @@
 
 %%% Пункт 3.2 — спіс/пералік
 %%%           — дадатак Р
+%%%           — калі ў любым пункце ёсць перанос на
+%%%           — наступны радок, то гэтыя радкі
+%%%           — без водступу абзаца
 \usepackage{enumitem}
-%%% Пункт 3.2 — перад кожнай пазіцыяй ставіць працяжнік
-%%%           — водступ абзаца
-    \setlist[1]{
-        label=--,               % значок пераліку
-        noitemsep,              % адсутнасць прамежку паміж радкамі
-        labelindent=\parindent, % пачатковы водступ
-        leftmargin=*
-    }
+%%% Адлегласці для 1, 2, 3 узроўня спісаў,
+%%% каб значок пераліку быў на адлегласці водступу абзаца
+\newlength{\indentForFirstItems}
+\setlength{\indentForFirstItems}{\parindent + 2.55ex}
+\newlength{\indentForSecondItems}
+\setlength{\indentForSecondItems}{\indentForFirstItems + \parindent}
+\newlength{\indentForThirdItems}
+\setlength{\indentForThirdItems}{\indentForSecondItems + \parindent}
 %%% дабаўляем пералік у выглядзе літар беларускага алфавіта
 %%% https://tex.stackexchange.com/questions/211386/use-letters-and-numbers-in-numerate-simultaneously
     \makeatletter
         \AddEnumerateCounter{\asbuk}{\belarusian@alph}{}
     \makeatother
+%%% Агульныя параметры для кожнага ўзроўню спіса
+    \setlist{
+        noitemsep,                          % адсутнасць прамежку паміж радкамі
+        nosep,                              % адсутнасць прамежку паміж тэкстам і спісам
+        leftmargin=0pt,                     % адсутнасць водступу леваруч
+    }
+%%% Пункт 3.2 — перад кожнай пазіцыяй ставіць працяжнік
+%%%           — водступ абзаца
+    \setlist[1]{
+        label=--,                           % значок пераліку
+        itemindent=\indentForFirstItems,    % водступ абзаца
+    }
 %%% Пункт 3.2 — пералік у адной з пазіцый,
 %%%           — то ставіць малую літару з дужкай
 %%%           — водступ абзаца
     \setlist[2]{
         label={\asbuk*}),
-        noitemsep,
-        leftmargin=\parindent
-    }
+        itemindent=\indentForSecondItems
+}
 %%% Пункт 3.2 — наступны пералік,
 %%%           — пры дапамозе арабскіх літар з дужкай
 %%%           — водступ абзаца
     \setlist[3]{
         label={\arabic*}),
-        noitemsep,
-        leftmargin=\parindent
+        itemindent=\indentForThirdItems
     }
