@@ -11,8 +11,10 @@
 
 %%% Пункт 3.1 — шрыфт Times New Roman
 \usepackage{fontspec}
+    \defaultfontfeatures{Renderer=Basic,Ligatures={TeX}}
     \setmainfont{Times New Roman}
 
+\usepackage[english,belarusian]{babel}
 %%% Падключэнне беларускай мовы
 \usepackage[english, belarusian]{babel}
 
@@ -31,7 +33,7 @@
 \usepackage{soul}
 
 %%% спасылкі ў pdf
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 %%% Пункт 3.1 — інтэрвал паміж радкамі
 %%%             мае складаць 1,5 машынапіснага інтэрвалу
@@ -100,8 +102,55 @@
     \titlespacing{\section}{0pt}{0pt}{1.5em}
 %%% Пункт 3.1 — паўтоўсты шрыфт Times New Roman з памерам асноўнага тэксту
 %%%           — адлегласць паміж падзагалоўкам і тэкстам у 1 прабельны радок
+%%%           — водступ абзаца
 %%%           — дадатак Р
     \titleformat{\subsection}
         {\fontsize{12}{12} \bfseries \raggedright}
         {}{0pt}{\hspace{1.25cm}\thesubsection~} 
     \titlespacing{\subsection}{0pt}{1.5em}{1.5em}
+%%% Пункт 3.1 — нармальны шрыфт Times New Roman
+%%%           — нумар падпункта паўтоўстым шрыфтам Times New Roman
+%%%           — водступ абзаца
+%%%           — загаловак пункта не вылучаецца паўтоўстым шрыфтам
+%%%           — змест пункта пачынаецца з новага абзаца без прабельнага радка
+    \titleformat{\subsubsection}
+        {\fontsize{12}{12} \raggedright}
+        {}{0pt}{\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
+    \titlespacing{\subsubsection}{0pt}{1.5em}{0pt}
+
+%%% Змест
+\usepackage{tocloft}
+%%% Падпункт 2.2.6
+%%% Дадатак И
+    % змест не нумаруюць
+    \tocloftpagestyle{empty}
+    % адключэнне пераносу слоў
+    \makeatletter
+        \renewcommand{\@tocrmarg}{2.55em plus1fil}
+    \makeatletter
+    % шматкроп'е да нумару старонкі
+    \cftsetpnumwidth{0pt}
+    % адлегласць паміж нумарам раздзела і яго назвай
+    \renewcommand{\cftsecnumwidth}{10pt}
+    % шрыфт загалоўка раздзела
+    \renewcommand{\cftsecfont}{\normalfont}
+    % шрыфт нумара раздзела
+    \renewcommand{\cftsecpagefont}{\normalfont}
+    % шматкроп'е паміж загалоўкам і нумарам старонкі для раздзела
+    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+    % адлегласць паміж загалоўкамі раздзелаў
+    \renewcommand{\cftbeforesecskip}{0em}
+    % адлегласць паміж нумарам падраздзела і яго назвай
+    \renewcommand{\cftsubsecnumwidth}{20pt}
+    % слова ЗМЕСТ пішацца вялікі літарамі, паўтоўстым шрыфтам, па цэнтру
+    \renewcommand{\cfttoctitlefont}{
+        \hfill
+        \fontsize{14}{14}
+        \bfseries
+        \MakeUppercase
+    }
+    \renewcommand{\cftaftertoctitle}{\hfill}
+
+%%% Змест уключае загалоўкі ўсіх частак тлумачальнай запіскі,
+%%% у тым ліку раздзелаў, падраздзелаў, дадаткаў
+\setcounter{tocdepth}{2} % змест уключае толькі section і subsection
