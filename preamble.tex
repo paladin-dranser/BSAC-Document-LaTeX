@@ -46,8 +46,6 @@
 %%%             мае складаць 1,5 машынапіснага інтэрвалу
 \usepackage{setspace}
     \onehalfspacing
-%%% Водступы ў формулах звычайнага памеру
-%\usepackage[nodisplayskipstretch]{setspace}
 
 %%% «Разумная» коска
 \usepackage{icomma}
@@ -62,15 +60,21 @@
     %%% Пункт 3.3 — подпіс табліцы
     \captionsetup[table]{
         name=Табліца,
-        labelsep=endash,
-        justification=raggedright,
-        singlelinecheck=false
+        labelsep=endash,                % значок " — "
+        justification=raggedright,      % выраўноўваць па праваму боку
+        singlelinecheck=false,          % не выраўноўваць па цэнтру, калі 1 радок
+        skip=0pt,                       % паміж табліцай і назвай няма адлегласці
+        font=onehalfspacing,            % 1,5 інтэрвал паміж радкамі
+        belowskip=-0.2\baselineskip,    % "магія" для роўных прамежкаў зверху і знізу табліцы (падбіраў для прыблізнай аднолькавасці ў міліметрах)
     }
     %%% Пункт 3.5 — подпіс ілюстрацый
     \captionsetup[figure]{
         name=Малюнак,
-        labelsep=endash,
-        justification=centering
+        labelsep=endash,                % значок " — "
+        justification=centering,        % выраўноўваць па цэнтру
+        skip=1.5\baselineskip,          % пусты радок паміж малюнкам і назвай
+        font=onehalfspacing,            % 1,5 інтэрвал паміж радкамі
+        belowskip=-0.6\baselineskip     % "магія" для роўных прамежкаў зверху і знізу малюнка
     }
 
 \usepackage{fancyhdr} % пакет для устаноўкі калонтытулаў
@@ -108,15 +112,15 @@
     \titleformat{\section}
         {\fontsize{14}{14} \bfseries \raggedright}
         {}{0pt}{\hspace{1.25cm}\thesection~\MakeUppercase} 
-    \titlespacing{\section}{0pt}{0pt}{1.5em}
+    \titlespacing{\section}{0pt}{0pt}{\baselineskip}
 %%% Пункт 3.1 — паўтоўсты шрыфт Times New Roman з памерам асноўнага тэксту
 %%%           — адлегласць паміж падзагалоўкам і тэкстам у 1 прабельны радок
 %%%           — водступ абзаца
 %%%           — дадатак Р
     \titleformat{\subsection}
-        {\fontsize{12}{12} \bfseries \raggedright}
+        {\bfseries \raggedright}
         {}{0pt}{\hspace{1.25cm}\thesubsection~} 
-    \titlespacing{\subsection}{0pt}{1.5em}{1.5em}
+    \titlespacing{\subsection}{0pt}{\baselineskip}{\baselineskip}
 %%% Пункт 3.1 — нармальны шрыфт Times New Roman
 %%%           — нумар падпункта паўтоўстым шрыфтам Times New Roman
 %%%           — водступ абзаца
@@ -125,7 +129,7 @@
     \titleformat{\subsubsection}
         {\fontsize{12}{12} \raggedright}
         {}{0pt}{\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
-    \titlespacing{\subsubsection}{0pt}{1.5em}{0pt}
+    \titlespacing{\subsubsection}{0pt}{\baselineskip}{0pt}
 
 %%% Змест
 \usepackage{tocloft}
@@ -211,3 +215,29 @@
         label={\arabic*}),
         itemindent=\indentForThirdItems
     }
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{adjustbox}
+
+%%% Пункт 3.1 — нумар табліцы складаецца з нумару раздзела і
+%%%           — парадкавага нумару табліцы, падзеленых кропкай
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+%%% Пункт 3.1 — раздзел мае пачынаецца з новай старонкі
+\let\oldsection\section
+\renewcommand{\section}{\newpage\oldsection}
+
+%%% Пункт 3.1 — табліца/ілюстрацыя мае адасабляцца пустым радком зверху і знізу
+\setlength\intextsep{1.3\baselineskip}
+
+
+%%% малюнкі
+\usepackage{graphicx}
+    \graphicspath{{images/}} % месца, дзе шукаць графічныя файлы
+
+%%% Пункт 3.1 — нумар табліцы складаецца з нумару раздзела і
+%%%           — парадкавага нумару табліцы, падзеленых кропкай
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
