@@ -17,9 +17,6 @@
 %%% Падключэнне беларускай мовы
 \usepackage[english, belarusian]{babel}
 
-%%% Дазвол на кірыліцу ў формулах
-\usepackage{mathtext}
-
 %%% Для ўключэння pdf дакументаў у канчатковы файл
 \usepackage{pdfpages}
 
@@ -241,3 +238,29 @@
 %%% Пункт 3.1 — нумар табліцы складаецца з нумару раздзела і
 %%%           — парадкавага нумару табліцы, падзеленых кропкай
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+%%% Пункт 3.4 — формула адасабляецца пустым радком зверху і знізу
+\AtBeginDocument{%
+ \abovedisplayskip=\baselineskip%
+ \abovedisplayshortskip=0.8\baselineskip%
+ \belowdisplayskip=\baselineskip%
+ \belowdisplayshortskip=\baselineskip%
+}
+%%% Іншы спосаб прызначэння параметраў
+%\makeatletter
+%\g@addto@macro\normalsize{%
+%  \setlength\abovedisplayskip{\baselineskip}
+%  \setlength\abovedisplayshortskip{0.8\baselineskip}
+%  \setlength\belowdisplayskip{\baselineskip}
+%  \setlength\belowdisplayshortskip{\baselineskip}
+%}
+%\makeatother
+
+%%% Дадатковыя магмымасці для матэматыкі
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+%%% Пункт 3.4 — нумарацыя формул у межах раздзела
+\usepackage{mathtools}
+    \numberwithin{equation}{section}
+    % Нумарацыя толькі для тых формул, на якія існуе \eqref{} у тэксце
+    %\mathtoolsset{showonlyrefs=true}
