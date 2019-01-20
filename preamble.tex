@@ -11,7 +11,7 @@
 
 %%% Пункт 3.1 — шрыфт Times New Roman
 \usepackage{fontspec}
-    \defaultfontfeatures{Renderer=Basic,Ligatures={TeX}}
+    \defaultfontfeatures{Renderer=Basic,Ligatures={TeX}} % LuaLaTeX
     \setmainfont{Times New Roman}
 
 %%% Падключэнне беларускай мовы
@@ -107,7 +107,7 @@
 %%%           — адлегласць паміж загалоўкам і падзагалоўкам у 1 прабельны радок
 %%%           — дадатак Р
     \titleformat{\section}
-        {\fontsize{14}{14} \bfseries \raggedright}
+        {\fontsize{14}{14} \onehalfspacing \bfseries \raggedright}
         {}{0pt}{\hspace{1.25cm}\thesection~\MakeUppercase} 
     \titlespacing{\section}{0pt}{0pt}{\baselineskip}
 %%% Пункт 3.1 — паўтоўсты шрыфт Times New Roman з памерам асноўнага тэксту
@@ -115,7 +115,7 @@
 %%%           — водступ абзаца
 %%%           — дадатак Р
     \titleformat{\subsection}
-        {\bfseries \raggedright}
+        {\onehalfspacing \bfseries \raggedright}
         {}{0pt}{\hspace{1.25cm}\thesubsection~} 
     \titlespacing{\subsection}{0pt}{\baselineskip}{\baselineskip}
 %%% Пункт 3.1 — нармальны шрыфт Times New Roman
@@ -124,7 +124,7 @@
 %%%           — загаловак пункта не вылучаецца паўтоўстым шрыфтам
 %%%           — змест пункта пачынаецца з новага абзаца без прабельнага радка
     \titleformat{\subsubsection}
-        {\fontsize{12}{12} \raggedright}
+        {\fontsize{12}{12} \onehalfspacing \raggedright}
         {}{0pt}{\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
     \titlespacing{\subsubsection}{0pt}{\baselineskip}{0pt}
 
