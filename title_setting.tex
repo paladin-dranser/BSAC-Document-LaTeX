@@ -1,0 +1,44 @@
+%%% Каманда для напісання факультэта
+\newcommand{\faculty}[1]{%
+\MakeUppercase{Факультэт #1}%
+}
+
+%%% Факультэт Электрасувязі
+\newcommand{\telecommunication}{%
+Электрасувязі%
+}
+
+%%% Каманда для напісання кафедры
+\newcommand{\department}[1]{%
+\MakeUppercase{Кафедра #1}%
+}
+
+%%% Кафедра праграмнага забеспячэння
+\newcommand{\software}{%
+Праграмнага забеспячэння%
+}
+
+%%% Каманда для напісання назвы курсавой работы
+\newcommand{\titleOfWork}[1]{%
+\MakeUppercase{#1}%
+}
+
+%%% Каманда для напісання назвы дысцыпліны
+\newcommand{\titleOfDiscipline}[1]{%
+<<\MakeUppercase{#1}>>%
+}
+
+%%% Пункт 2.2.3 — шрыфт Times New Roman
+%%%             — памер шрыфта 14 пунктаў
+%%%             — адзінарны інтэрвал
+%%% bsac.by/sites/default/files/content/landing/2018/68/files/01-04/titulnyylistpzkrvo-1.docx
+\newenvironment{TitlePage}%
+    {%
+        \thispagestyle{empty}
+        \fontsize{14}{14}%
+        \selectfont%
+        \begin{center}%
+    }%
+    {%
+        \end{center}
+    }
