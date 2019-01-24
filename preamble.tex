@@ -133,19 +133,30 @@
         {0pt}%
         {\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
     \titlespacing{\subsubsection}{0pt}{\baselineskip}{0pt}
-
+%%% Каманда для загалоўка без нумарацыі
+\newcommand{\sectionWithoutNumber}[1]%
+{%
+    \addtocounter{\thesectionWithoutNumber}{1}
+    \begin{center}%
+        \fontsize{14}{14}%
+        \selectfont%
+        \bfseries%
+        \MakeUppercase{#1}%
+    \end{center}%
+    \addcontentsline{toc}{section}{#1}%
+}
 %%% Змест
 \usepackage{tocloft}
 %%% Падпункт 2.2.6
 %%% Дадатак И
-    % змест не нумаруюць
+    % старонка са зместам не нумаруецца
     \tocloftpagestyle{empty}
     % адключэнне пераносу слоў
     \makeatletter
         \renewcommand{\@tocrmarg}{2.55em plus1fil}
     \makeatletter
     % шматкроп'е да нумару старонкі
-    \cftsetpnumwidth{0pt}
+    \cftsetpnumwidth{2ex}
     % адлегласць паміж нумарам раздзела і яго назвай
     \renewcommand{\cftsecnumwidth}{10pt}
     % шрыфт загалоўка раздзела
@@ -166,7 +177,6 @@
         \MakeUppercase
     }
     \renewcommand{\cftaftertoctitle}{\hfill}
-
 %%% Падпункт 2.2.6 — змест уключае загалоўкі ўсіх частак тлумачальнай запіскі,
 %%%                — у тым ліку раздзелаў, падраздзелаў, дадаткаў
 \setcounter{tocdepth}{2} % змест уключае толькі section і subsection
@@ -298,3 +308,4 @@
 
 %%% Настройкі для тытульнага аркуша
 \input{title_setting}
+
