@@ -106,17 +106,21 @@
 %%%           — адлегласць паміж загалоўкам і тэкстам у 1 прабельны радок
 %%%           — адлегласць паміж загалоўкам і падзагалоўкам у 1 прабельны радок
 %%%           — дадатак Р
-    \titleformat{\section}
-        {\fontsize{14}{14} \onehalfspacing \bfseries \raggedright}
-        {}{0pt}{\hspace{1.25cm}\thesection~\MakeUppercase} 
+    \titleformat{\section}%
+        {\onehalfspacing \bfseries \raggedright}%
+        {}%
+        {0pt}%
+        {\hspace{1.25cm}\fontsize{14}{14}\selectfont\thesection~\MakeUppercase}%
     \titlespacing{\section}{0pt}{0pt}{\baselineskip}
 %%% Пункт 3.1 — паўтоўсты шрыфт Times New Roman з памерам асноўнага тэксту
 %%%           — адлегласць паміж падзагалоўкам і тэкстам у 1 прабельны радок
 %%%           — водступ абзаца
 %%%           — дадатак Р
     \titleformat{\subsection}
-        {\onehalfspacing \bfseries \raggedright}
-        {}{0pt}{\hspace{1.25cm}\thesubsection~} 
+        {\onehalfspacing \bfseries \raggedright}%
+        {}%
+        {0pt}%
+        {\hspace{1.25cm}\thesubsection~} 
     \titlespacing{\subsection}{0pt}{\baselineskip}{\baselineskip}
 %%% Пункт 3.1 — нармальны шрыфт Times New Roman
 %%%           — нумар падпункта паўтоўстым шрыфтам Times New Roman
@@ -124,8 +128,10 @@
 %%%           — загаловак пункта не вылучаецца паўтоўстым шрыфтам
 %%%           — змест пункта пачынаецца з новага абзаца без прабельнага радка
     \titleformat{\subsubsection}
-        {\fontsize{12}{12} \onehalfspacing \raggedright}
-        {}{0pt}{\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
+        {\onehalfspacing \raggedright}%
+        {}%
+        {0pt}%
+        {\hspace{1.25cm}{\bfseries \thesubsubsection~}} 
     \titlespacing{\subsubsection}{0pt}{\baselineskip}{0pt}
 
 %%% Змест
@@ -224,13 +230,8 @@
 %%%           — парадкавага нумару табліцы, падзеленых кропкай
 \renewcommand{\thetable}{\thesection.\arabic{table}}
 
-%%% Пункт 3.1 — раздзел мае пачынаецца з новай старонкі
-%\let\oldsection\section
-%\renewcommand{\section}{\newpage\oldsection}
-
 %%% Пункт 3.1 — табліца/ілюстрацыя мае адасабляцца пустым радком зверху і знізу
 \setlength\intextsep{1.3\baselineskip}
-
 
 %%% малюнкі
 \usepackage{graphicx}
@@ -279,7 +280,7 @@
 %%% https://github.com/mstyura/bsuir-diploma-latex/blob/master/MiKTeX/course_content.tex
 \newlength{\lengthWordWhere}
 \settowidth{\lengthWordWhere}{дзе}
-\newenvironment{explanation}%
+\newenvironment{Explanation}%
     {%
         \begin{itemize}[%
             leftmargin=0pt,%
@@ -294,3 +295,6 @@
         \\[\parsep]%
         \end{itemize}%
     }
+
+%%% Настройкі для тытульнага аркуша
+\input{title_setting}
