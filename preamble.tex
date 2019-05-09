@@ -35,7 +35,7 @@
         pdftitle={Дыпломны праект},             % загаловак
         pdfauthor={Буцько Антось Уладзіміравіч},% аўтар
         colorlinks=true,                        % каляровыя спасылкі
-        linkcolor=red,                          % колер унутраных спасылак
+        linkcolor=black,                        % колер унутраных спасылак
         linktoc=all,                            % спасылка па загалоўку і нумару старонкі
     }
 
@@ -73,6 +73,12 @@
         skip=1.5\baselineskip,          % пусты радок паміж малюнкам і назвай
         belowskip=-0.6\baselineskip     % "магія" для роўных прамежкаў зверху і знізу малюнка
     }
+    \captionsetup[lstlisting]{
+        labelsep=endash,
+        justification=centering,
+        font=onehalfspacing,
+        skip=1.5\baselineskip,
+    }
 
 \usepackage{fancyhdr} % пакет для устаноўкі калонтытулаў
     %%% Стыль старонкі (раздзел)
@@ -84,6 +90,7 @@
         \renewcommand{\footrulewidth}{0pt} % прыбраць падзяляльную лінію ўнізе старонкі
         \rfoot{\thepage} % нумарацыя ў ніжнім правым кутку
     }
+    \pagestyle{section}
 
 %%% Водступ першага абзаца ў section (адпаведна з астатнімі абзацамі)
 \usepackage{indentfirst}
@@ -144,6 +151,19 @@
         \MakeUppercase{#1}%
     \end{center}%
     \addcontentsline{toc}{section}{#1}%
+    \par
+}
+%%% Каманда для загалоўка без дабаўлення ў змест
+\newcommand{\sectionWithoutContent}[1]%
+{%
+    \phantomsection%
+    \begin{center}%
+        \fontsize{14}{14}%
+        \selectfont%
+        \bfseries%
+        \MakeUppercase{#1}%
+    \end{center}%
+    \par
 }
 %%% Змест
 \usepackage{tocloft}
@@ -170,13 +190,14 @@
     % адлегласць паміж нумарам падраздзела і яго назвай
     \renewcommand{\cftsubsecnumwidth}{20pt}
     % слова ЗМЕСТ пішацца вялікімі літарамі, паўтоўстым шрыфтам, па цэнтру
-    \renewcommand{\cfttoctitlefont}{
-        \hfill
-        \fontsize{14}{14}
-        \bfseries
-        \MakeUppercase
+    \renewcommand{\cfttoctitlefont}{%
+        \hfill%
+        \fontsize{14}{14}%
+        \bfseries%
+        \MakeUppercase%
     }
     \renewcommand{\cftaftertoctitle}{\hfill}
+    %\renewcommand{\cftaftertoctitle}{\hfill\hfill}
 %%% Падпункт 2.2.6 — змест уключае загалоўкі ўсіх частак тлумачальнай запіскі,
 %%%                — у тым ліку раздзелаў, падраздзелаў, дадаткаў
 \setcounter{tocdepth}{2} % змест уключае толькі section і subsection
@@ -230,10 +251,10 @@
     }
 
 %%% Табліцы
-\usepackage{array,tabularx,tabulary,booktabs} % дадатковыя магчымасці для табліц
+\usepackage{array,tabularx,tabulary,booktabs, tabu} % дадатковыя магчымасці для табліц
 \usepackage{longtable}                        % для табліц на некалькі старонак
 \usepackage{multirow}                         % зліццё радкоў у табліцы
-\usepackage{adjustbox}                        % для афармлення блокаў з пэўным выраўноўвання
+\usepackage{adjustbox}                        % для афармлення блокаў з пэўным выраўноўваннем
 \usepackage{float}                            % опцыя H (уставіць акурат сюды) для табліц і ілюстрацый
 
 %%% Пункт 3.1 — нумар табліцы складаецца з нумару раздзела і
@@ -249,7 +270,9 @@
 
 %%% Пункт 3.1 — нумар табліцы складаецца з нумару раздзела і
 %%%           — парадкавага нумару табліцы, падзеленых кропкай
-\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+%%%\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
 
 %%% Пункт 3.4 — формула адасабляецца пустым радком зверху і знізу
 \AtBeginDocument{%
@@ -306,6 +329,20 @@
         \end{itemize}%
     }
 
+\usepackage{listings}
+    \lstset%
+    {%
+        showstringspaces=false,%
+        tabsize=4,%
+        basicstyle=\scriptsize\ttfamily,%
+        captionpos=b,%
+        inputpath=code/,%
+        aboveskip=\baselineskip,%
+        belowskip=\baselineskip
+    }
+
+%%% Нумарацыя лістынгаў у межах секцыі
+\AtBeginDocument{\numberwithin{lstlisting}{section}}
 %%% Настройкі для тытульнага аркуша
 \input{title_setting}
 
